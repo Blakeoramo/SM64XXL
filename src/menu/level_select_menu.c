@@ -112,13 +112,6 @@ s16 level_select_input_loop(void) {
 		case 4: //WIDESCREEN MODE
 				if (optionsmenu == 1) {
 					print_text(OPTIONX2 - 25,OPTIONXY, "*");
-					if (gPlayer1Controller->buttonPressed & START_BUTTON && cheat3enable < 1 && optionselector == 4) {
-						play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
-						cheat3enable=1;
-					} else if (gPlayer1Controller->buttonPressed & START_BUTTON && cheat3enable > 0 && optionselector == 4) {
-						play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
-						cheat3enable=0;
-					}
 				}
 			break;
 	}

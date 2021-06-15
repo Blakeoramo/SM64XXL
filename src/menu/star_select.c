@@ -20,6 +20,7 @@
 #include "star_select.h"
 #include "text_strings.h"
 #include "prevent_bss_reordering.h"
+#include "game/calories.h"
 
 /**
  * @file star_select.c
@@ -53,6 +54,7 @@ static s8 sSelectableStarIndex = 0;
 // Act Selector menu timer that keeps counting until you choose an act.
 static s32 sActSelectorMenuTimer = 0;
 
+u8 cheat3enableram= 0;
 /**
  * Act Selector Star Type Loop Action
  * Defines a select type for a star in the act selector.
@@ -109,6 +111,9 @@ void bhv_act_selector_init(void) {
     s16 i = 0;
     s32 selectorModelIDs[10];
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
+	cheat3enableram = cheat3enable;
+	cheat3enableram = cheat3enableram;
+	cheat3enable=0;
 
     sVisibleStars = 0;
     while (i != sObtainedStars) {
@@ -420,6 +425,7 @@ s32 lvl_update_obj_and_load_act_button_actions(UNUSED s32 arg, UNUSED s32 unused
             play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
 #else
             play_sound(SOUND_MENU_STAR_SOUND_LETS_A_GO, gGlobalSoundSource);
+			cheat3enable = cheat3enableram;
 #endif
 #ifdef VERSION_SH
             queue_rumble_data(60, 70);
