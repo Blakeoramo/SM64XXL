@@ -112,7 +112,7 @@ s32 act_idle(struct MarioState *m) {
         return set_mario_action(m, ACT_COUGHING, 0);
     }
 
-    if (!(m->actionArg & 1) && fatmariopant == 1) {
+    if (!(m->actionArg & 1) && m->health < 0x300) {
         return set_mario_action(m, ACT_PANTING, 0);
     }
 
@@ -130,9 +130,24 @@ s32 act_idle(struct MarioState *m) {
 
     if (m->actionArg & 1) {
         set_mario_animation(m, MARIO_ANIM_STAND_AGAINST_WALL);
-    } else {
+    } else if (gMarioState->squishTimer > 0) {
         switch (m->actionState) {
             case 0:
+                set_mario_animation(m, MARIO_ANIM_WALK_PANTING);
+                break;
+
+            case 1:
+                set_mario_animation(m, MARIO_ANIM_WALK_PANTING);
+                break;
+
+            case 2:
+                set_mario_animation(m, MARIO_ANIM_WALK_PANTING);
+                break;
+        }
+		
+	} else if (gMarioState->squishTimer==0) {
+		switch (m->actionState) {
+			case 0:
                 set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_LEFT);
                 break;
 
@@ -154,21 +169,20 @@ s32 act_idle(struct MarioState *m) {
             // and that he's gone through 10 cycles before sleeping.
             // actionTimer is used to track how many cycles have passed.
             if (++m->actionState == 3) {
-                f32 deltaYOfFloorBehindMario = m->pos[1] - find_floor_height_relative_polar(m, -0x8000, 60.0f);
-                if (deltaYOfFloorBehindMario < -24.0f || 24.0f < deltaYOfFloorBehindMario || m->floor->flags & SURFACE_FLAG_DYNAMIC) {
+                f32 sp24 = m->pos[1] - find_floor_height_relative_polar(m, -0x8000, 60.0f);
+                if (sp24 < -24.0f || 24.0f < sp24 || m->floor->flags & 1) {
                     m->actionState = 0;
                 } else {
-                    // If Mario hasn't turned his head 10 times yet, stay idle instead of going to sleep.
+                    // If Mario hasn't turned his head 10 times yet, stay idle instead of going to
+                    // sleep.
                     m->actionTimer++;
-                    if (m->actionTimer < 10) {
+                    if (m->actionTimer > 0) {
                         m->actionState = 0;
                     }
                 }
             }
         }
     }
-
-    stationary_ground_step(m);
 
     return FALSE;
 }

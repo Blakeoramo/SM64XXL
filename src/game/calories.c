@@ -20,7 +20,7 @@ u8 cheat2enable= 0;
 u8 cheat3enable= 0;
 u8 fatmariopant= 0;
 
-//MAIN
+////MAIN
 void cal(void) {
 	//CALORIES SYSTEM
 	//DEFAULT WEIGHT: gMarioState->squishTimer = 4; gMarioState->scaleY = 2;
@@ -31,7 +31,6 @@ void cal(void) {
 	gMarioState->numDeaths = gNumDeaths;
 	gMarioState->squishTimer = 4;
 	gMarioState->scaleY = 2;
-	fatmariopant=1;
 	render_hud();
 
 	if (gPauseTimer > 0 && gPauseCoolDown > 0) {
@@ -53,29 +52,24 @@ void cal(void) {
 		gNextCoin+=1;
 	}
 	
-	
 	if (gPoints > 24 && gPoints < 50) {
 		gMarioState->squishTimer = 3;
 		gMarioState->scaleY = 2;
-		fatmariopant=0;
 	}
 	
 	if (gPoints > 49 && gPoints < 75) {
 		gMarioState->squishTimer = 2;
 		gMarioState->scaleY = 2;
-		fatmariopant=0;
 	}
 	
 	if (gPoints > 74 && gPoints < 100) {
 		gMarioState->squishTimer = 1;
 		gMarioState->scaleY = 1;
-		fatmariopant=0;
 	}
 	
 	if (gPoints > 99) {
 		gMarioState->squishTimer = 0;
 		gMarioState->scaleY = 0;
-		fatmariopant=0;
 	}
 	
     if (gPoints > 999) {

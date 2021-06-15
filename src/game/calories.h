@@ -9,7 +9,6 @@ extern u8 cheat3enable;
 extern u8 cheatLSD;
 extern u8 cheatLSDBuffer;
 extern u8 cheatDKToggle;
-extern u8 fatmariopant;
 extern u16 gNumDeaths;
 extern u16 gPoints;
 extern void cal(void);
