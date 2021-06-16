@@ -139,8 +139,23 @@ s16 level_select_input_loop(void) {
 	
 	if (optionsmenu == 1 && (gPlayer1Controller->buttonPressed & D_JPAD || gPlayer1Controller->buttonPressed & A_BUTTON)) {
 		optionselector++;
+		play_sound(SOUND_GENERAL_LEVEL_SELECT_CHANGE, gGlobalSoundSource);
 	} else if (optionsmenu == 1 && gPlayer1Controller->buttonPressed & U_JPAD) {
 		optionselector--;
+		play_sound(SOUND_GENERAL_LEVEL_SELECT_CHANGE, gGlobalSoundSource);
+	}
+	
+	if (optionsmenu == 1 && gPlayer1Controller->stickY > 0 && gPlayer1Controller->stickX < 0) {
+		optionselector = 1;
+	}
+	if (optionsmenu == 1 && gPlayer1Controller->stickY < 0 && gPlayer1Controller->stickX < 0) {
+		optionselector = 2;
+	}
+	if (optionsmenu == 1 && gPlayer1Controller->stickY > 0 && gPlayer1Controller->stickX > 0) {
+		optionselector = 3;
+	}
+	if (optionsmenu == 1 && gPlayer1Controller->stickY < 0 && gPlayer1Controller->stickX > 0) {
+		optionselector = 4;
 	}
 	
 	if (cheat1enable == 1) {

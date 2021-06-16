@@ -6,6 +6,7 @@
 #include "types.h"
 #include "hud.h"
 #include "game_init.h"
+#include "area.h"
 #include "calories.h"
 u16 gNumDeaths= 0;
 u16 gPoints= 0;
@@ -104,6 +105,10 @@ void cal(void) {
 	
 	if (cheatLSDBuffer > 19) {
 		cheatLSDBuffer=20;
+	}
+	
+	if (gCurrLevelNum == (1 || LEVEL_ENDING)) {
+		cheat3enable=0;
 	}
 	
 }
