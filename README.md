@@ -1,3 +1,8 @@
+# Super Mario 64 XXL
+- This repo is based of SM64Decomp and requires GCC installed in order to build. 
+- This repo does NOT come with the extra texture assets.
+- Refer to the SM64Decomp readme below for more general informtation.
+
 # Super Mario 64
 
 - This repo contains a full decompilation of Super Mario 64 (J), (U), (E), and (SH).
