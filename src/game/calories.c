@@ -18,7 +18,7 @@ u8 cheatDKToggle= 0;
 u8 cheat1enable= 0;
 u8 cheat2enable= 0;
 u8 cheat3enable= 0;
-u8 fatmariopant= 0;
+u8 fatmariostate= 0;
 
 ////MAIN
 void cal(void) {
@@ -47,9 +47,10 @@ void cal(void) {
 	}
 	
 	if (gMarioState->numCoins > gNextCoin){
-		gPoints-=25;
+		gPoints-=5;
 		gMarioState->forwardVel -= 10.0f;
-		gNextCoin+=1;
+		gNextCoin = gMarioState->numCoins;
+		gNextCoin = gNextCoin;
 	}
 	
 	if (gPoints > 24 && gPoints < 50) {
@@ -90,6 +91,11 @@ void cal(void) {
 	
 	if (gMarioState->health== 0) {
 		gPoints=0;
+		gNextCoin=0;
+	}
+	
+	if (gMarioState->numCoins < 1) {
+		gNextCoin=0;
 	}
 	
 	if (cheatLSDBuffer > 0) {

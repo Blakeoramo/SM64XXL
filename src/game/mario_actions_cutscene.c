@@ -643,6 +643,8 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
 s32 act_star_dance(struct MarioState *m) {
 	if (gPoints < 100)
 	gPoints=100;
+	gNextCoin=0;
+	gMarioState->numCoins=0;
     m->faceAngle[1] = m->area->camera->yaw;
     set_mario_animation(m, m->actionState == 2 ? MARIO_ANIM_RETURN_FROM_STAR_DANCE
                                                : MARIO_ANIM_STAR_DANCE);
@@ -1173,6 +1175,8 @@ s32 act_death_exit(struct MarioState *m) {
         // restore 7.75 units of health
         m->healCounter = 31;
 		gPoints=100;
+		gNextCoin=0;
+		gMarioState->numCoins=0;
     }
     // one unit of health
     m->health = 0x0100;
@@ -1209,6 +1213,8 @@ s32 act_falling_death_exit(struct MarioState *m) {
         // restore 7.75 units of health
         m->healCounter = 31;
 		gPoints=100;
+		gNextCoin=0;
+		gMarioState->numCoins=0;
     }
     // one unit of health
     m->health = 0x0100;
@@ -1256,6 +1262,8 @@ s32 act_special_death_exit(struct MarioState *m) {
         m->numLives++;
         m->healCounter = 31;
 		gPoints=100;
+		gNextCoin=0;
+		gMarioState->numCoins=0;
     }
     // show Mario
     marioObj->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;

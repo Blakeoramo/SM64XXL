@@ -11,5 +11,6 @@ extern u8 cheatLSDBuffer;
 extern u8 cheatDKToggle;
 extern u16 gNumDeaths;
 extern u16 gPoints;
+extern u16 gNextCoin;
 extern void cal(void);
 #endif

@@ -5,7 +5,7 @@ void bhv_1up_interact(void) {
 
     if (obj_check_if_collided_with_object(o, gMarioObject) == 1) {
         play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
-        gMarioState->numLives++;
+		gMarioState->health = 0;
         o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
 #ifdef VERSION_SH
         queue_rumble_data(5, 80);
